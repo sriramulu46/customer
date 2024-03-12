@@ -18,39 +18,42 @@ import ts.com.customer.service.count.CountService;
 @Controller
 public class CountController {
 
-	
 	private final CountService countService;
 	private final CountRepository countRep;
-	
+
 	@Autowired
-    public CountController(CountService countService, CountRepository countRepository) {
-        this.countService = countService;
-        this.countRep = countRepository; // Initialize countRep here
-    }
+	public CountController(CountService countService, CountRepository countRepository) {
+		this.countService = countService;
+		this.countRep = countRepository; // Initialize countRep here
+	}
 
 	/*
 	 * @Autowired public CountController(CountService countService, CountRepository
 	 * countRepository) { this.countService = countService; this.countRepository =
 	 * countRepository; }
 	 */
-	
+
 	private Count count;
 
+	@GetMapping("/countlist")
+	public String index(Model model) {
+		List<Count> countListall = countService.getAllCount();
+		model.addAttribute("countListall", countListall);
+		return "index";
+	}
 
-
-	@PostMapping("/countlist")
+	@PostMapping("/countpost")
 	public String submitcount(@RequestParam("Instance_Count") int Instance_Count,
 			@RequestParam("Monthly_Efforts") int Monthly_Efforts, @RequestParam("FTE_Count") int FTE_Count,
 			@RequestParam("Rate_Card") int Rate_Card, Model cou) {
-		
+
 		cou.addAttribute("success", "datasuccssfull");
-		
+
 		System.out.println("submitting valus" + Instance_Count);
 		System.out.println("submitting valus" + Monthly_Efforts);
 		System.out.println("submitting valus" + FTE_Count);
 		System.out.println("submitting valus" + Rate_Card);
-		System.out.println("please find the value cou:"+cou);
-		
+		System.out.println("please find the value cou:" + cou);
 
 //		Count newEmp = count.submitcount(Count );
 		Count count = new Count();
@@ -59,8 +62,9 @@ public class CountController {
 		count.setFTE_Count(FTE_Count);
 		count.setRate_Card(Rate_Card);
 
-//		countRep.save(count);
-		return "redirect:/all";
+		countRep.save(count);
+//		System.out.println("Save the values: " + saveCount());
+		return "redirect:/countlist";
 	}
 
 	/*
@@ -74,24 +78,16 @@ public class CountController {
 	 * }
 	 */
 
-	@GetMapping("/all")
-    public String index(Model model) {
-        List<Count> countListall = countService.getAllCount();
-        model.addAttribute("countListall", countListall);
-        return "index";
-    }
+	/*
+	 * @GetMapping("/greeting") public String greeting(
+	 * 
+	 * @RequestParam(name = "name", required = false, defaultValue =
+	 * "Welcome to count") String name, Model model) { model.addAttribute("name",
+	 * name); return "count"; }
+	 */
 
-	@GetMapping("/greeting")
-	public String greeting(
-			@RequestParam(name = "name", required = false, defaultValue = "Welcome to count") String name,
-			Model model) {
-		model.addAttribute("name", name);
-		return "count";
-	}
-
-	@GetMapping("/savecount")
-	public String saveCount() {
-		return "index";
-	}
+	/*
+	 * @GetMapping("/savecount") public String saveCount() { return "index"; }
+	 */
 
 }

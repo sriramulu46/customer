@@ -13,7 +13,8 @@ public interface CountService {
 
 	public List<Count> getAllCount();
 	
-
+	public List<Count> findAll();
+	
 	public Count getCountById(int id);
 
 	public boolean deleteCount(int id);

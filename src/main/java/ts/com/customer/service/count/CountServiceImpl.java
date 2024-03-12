@@ -47,6 +47,11 @@ public class CountServiceImpl implements CountService{
 		return false;
 	}
 
+	@Override
+	public List<Count> findAll() {
+		return (List<Count>) countRep.findAll();
+	}
+
 	
 	
 

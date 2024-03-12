@@ -28,7 +28,7 @@ public class Employee {
 	private int Bill_Rate;
 
 	@Column(name = "DB_Estimate")
-	private int DB_Estimate;
+	private float DB_Estimate;
 
 	@Column(name = "G_Level")
 	private String G_Level;
@@ -73,11 +73,11 @@ public class Employee {
 		Bill_Rate = bill_Rate;
 	}
 
-	public int getDB_Estimate() {
+	public float getDB_Estimate() {
 		return DB_Estimate;
 	}
 
-	public void setDB_Estimate(int dB_Estimate) {
+	public void setDB_Estimate(float dB_Estimate) {
 		DB_Estimate = dB_Estimate;
 	}
 
