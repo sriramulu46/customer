@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" th:replace="~{ base :: layout(~{::title} , ~{::section}) }">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Index Page</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="container p-5">
+			<div class="row">
+				<div class="col-md-10 offset-md-1">
+					<div class="card">
+						<div class="card-header text-center fs-4">Employee Details</div>
+						<th:block th:if="${session.msg}">
+							<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+							<th:block th:text="${@empServiceImpl.removeSessionMessage()}"></th:block>
+						</th:block>
+						<div class="card-body">
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Emp_Name</th>
+										<th scope="col">Role_Maturity</th>
+										<th scope="col">Skill_Profile</th>
+										<th scope="col">Bill_Rate</th>
+										<th scope="col">DB_Estimate</th>
+										<th scope="col">G_Level</th>
+										<th scope="col">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="e,c:${empList}">
+										<th scope="row">[[${c.count}]]</th>
+										<td>[[${e.emp_Name}]]</td>
+										<td>[[${e.role_Maturity}]]</td>
+										<td>[[${e.skill_Profile}]]</td>
+										<td>[[${e.bill_Rate}]]</td>
+										<td>[[${e.dB_Estimate}]]</td>
+										<td>[[${e.g_Level}]]</td>
+										<td><a th:href="@{'EditEmp/'+${e.id}}" class="btn btn-sm btn-primary">Edit</a>
+
+											<a th:href="@{'deleteEmp/'+${e.id}}"
+												class="btn btn-sm btn-danger">Delete</a>
+										</td>
+									</tr>
+
+								</tbody>
+
+
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--<div th:each="count : ${List}">
+			<form th:action="@{/countlist}" method="post">
+				 Include hidden input field for ID 
+				<input type="hidden" name="id" th:value="${count.id}" />
+
+				 Input fields for each property 
+				<label for="Instance_Count">Instance Count:</label>
+				<input type="number" id="Instance_Count" name="instanceCount" th:value="${count.instanceCount}" />
+				<label for="Monthly_Efforts">Monthly Efforts:</label>
+				<input type="number" id="Monthly_Efforts" name="monthlyEfforts" th:value="${count.monthlyEfforts}" />
+				<label for="FTE_Count">FTE Count:</label>
+				<input type="number" id="FTE_Count" name="fteCount" th:value="${count.fteCount}" />
+				<label for="Rate_Card">Rate Card:</label>
+				<input type="number" id="Rate_Card" name="rateCard" th:value="${count.rateCard}" />
+				<br>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+		 Add a form to refresh the count list 
+		<form th:action="@{/all}" method="get">
+			<input type="submit" value="Refresh">
+		</form>-->
+
+		<div class="container">
+			<h1>Count List Post method</h1>
+			<form action="/countlist" method="post">
+				<div class="form-group">
+					<label for="Instance_Count">Instance_Count:</label>
+					<input type="number" class="form-control" id="Instance_Count" name="Instance_Count">
+				</div>
+				<div class="form-group">
+					<label for="Monthly_Efforts">Monthly_Efforts:</label>
+					<input type="number" class="form-control" id="Monthly_Efforts" name="Monthly_Efforts">
+				</div>
+				<div class="form-group">
+					<label for="FTE_Count">FTE_Count:</label>
+					<input type="number" class="form-control" id="FTE_Count" name="FTE_Count">
+				</div>
+				<div class="form-group">
+					<label for="Rate_Card">Rate_Card:</label>
+					<input type="number" class="form-control" id="Rate_Card" name="Rate_Card">
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+			<hr>
+			<h2>Count List get method </h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Instance_Count</th>
+						<th>Monthly_Efforts</th>
+						<th>FTE_Count</th>
+						<th>Rate_Card</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Iterate over the countList and display each Count entity -->
+					<tr th:each="count : ${countListall}">
+						<td th:text="${count.Instance_Count}"></td>
+						<td th:text="${count.Monthly_Efforts}"></td>
+						<td th:text="${count.FTE_Count}"></td>
+						<td th:text="${count.Rate_Card}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</section>
+</body>
+
+</html>
