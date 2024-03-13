@@ -1,0 +1,9 @@
+ // get item by id
+    getEmpById(id){
+        return axios.get(Customer_Base_URL + '/' + itemID);
+    }
+
+    // get item by name
+    getItemByName(itemName) {
+        return axios.get(`${Customer_Base_URL}/${itemName}`);
+    }
