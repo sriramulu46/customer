@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CountList</title>
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        label, input, select {
+            margin-bottom: 10px;
+        }
+        label {
+            width: 150px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        input, select {
+            width: 200px;
+            box-sizing: border-box;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+	<!--<h1>Greeting</h1>
+	<p>Welcome, <span th:text="${name}">Guest</span>!</p>-->
+<form action="/countpost" method="post">
+	<div class="form-group">
+		<label for="Instance_Count">Instance_Count:</label>
+		<input type="number" class="form-control" id="Instance_Count" name="Instance_Count">
+	</div>
+	<div class="form-group">
+		<label for="Monthly_Efforts">Monthly_Efforts:</label>
+		<input type="number" class="form-control" id="Monthly_Efforts" name="Monthly_Efforts">
+	</div>
+	<div class="form-group">
+		<label for="FTE_Count">FTE_Count:</label>
+		<input type="number" class="form-control" id="FTE_Count" name="FTE_Count">
+	</div>
+	<div class="form-group">
+		<label for="Rate_Card">Rate_Card:</label>
+		<input type="number" class="form-control" id="Rate_Card" name="Rate_Card">
+	</div>
+	<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+
+
+</html>

@@ -42,6 +42,7 @@ public class CountController {
 		return "index";
 	}
 
+	//after posting mapping return/countlist: 68 & 38 retun indexpage(42)
 	@PostMapping("/countpost")
 	public String submitcount(@RequestParam("Instance_Count") int Instance_Count,
 			@RequestParam("Monthly_Efforts") int Monthly_Efforts, @RequestParam("FTE_Count") int FTE_Count,
@@ -67,6 +68,13 @@ public class CountController {
 		return "redirect:/countlist";
 	}
 
+//it will open Ccount.html page return to post mapping line: 45
+	@GetMapping("/savecount")
+	public String saveCount() {
+		return "count";
+	}
+	
+	
 	/*
 	 * @GetMapping("/all") public String index(Model m) { if (countService != null)
 	 * { List<Count> list = countService.getAllCount(); m.addAttribute("List",
@@ -79,15 +87,11 @@ public class CountController {
 	 */
 
 	/*
-	 * @GetMapping("/greeting") public String greeting(
+	 * @GetMapping("/enter") public String greeting(
 	 * 
 	 * @RequestParam(name = "name", required = false, defaultValue =
-	 * "Welcome to count") String name, Model model) { model.addAttribute("name",
-	 * name); return "count"; }
-	 */
-
-	/*
-	 * @GetMapping("/savecount") public String saveCount() { return "index"; }
+	 * "Welcome to count controller") String name, Model model) {
+	 * model.addAttribute("name", name); return "count"; }
 	 */
 
 }
