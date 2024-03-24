@@ -11,18 +11,18 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
     const [role_Maturity, setRole_Maturity] = useState(selectedEmployee.role_Maturity);
     const [skill_Profile, setSkill_Profile] = useState(selectedEmployee.skill_Profile);
     const [bill_Rate, setBill_Rate] = useState(selectedEmployee.bill_Rate);
-    const [DB_Estimate, setDB_Estimate] = useState(selectedEmployee.DB_Estimate);
+    const [db_Estimate, setDB_Estimate] = useState(selectedEmployee.db_Estimate);
     const [g_Level, setG_Level] = useState(selectedEmployee.g_Level);
 
     const [instance_Count, setInstance_Count] = useState(selectedEmployee.instance_Count);
     const [monthly_Efforts, setMonthly_Efforts] = useState(selectedEmployee.monthly_Efforts);
-    const [fTE_Count, setFTE_Count] = useState(selectedEmployee.fTE_Count);
+    const [fte_count, setFTE_Count] = useState(selectedEmployee.fte_count);
     const [rate_Card, setRate_Card] = useState(selectedEmployee.rate_Card);
 
     const [efforts_Hrs, setEfforts_Hrs] = useState(selectedEmployee.efforts_Hrs);
     const [efforts, setEfforts] = useState(selectedEmployee.efforts);
     const [rate_Ero, setRate_Ero] = useState(selectedEmployee.rate_Ero);
-    const [sDE, setSDE] = useState(selectedEmployee.sDE);
+    const [sde, setSDE] = useState(selectedEmployee.sde);
     const [efforts_Pending, setEfforts_Pending] = useState(selectedEmployee.efforts_Pending);
 
     const textInput = useRef(null);
@@ -42,10 +42,10 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
     }, [instance_Count]);
 
     useEffect(() => {
-        if (monthly_Efforts && fTE_Count) {
-            setEfforts_Hrs((monthly_Efforts / fTE_Count) / 160 * 100);
+        if (monthly_Efforts && fte_count) {
+            setEfforts_Hrs((monthly_Efforts / fte_count) / 160 * 100);
         }
-    }, [monthly_Efforts, fTE_Count]);
+    }, [monthly_Efforts, fte_count]);
 
     useEffect(() => {
         setEfforts(160 * efforts_Hrs / 100);
@@ -64,19 +64,19 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
     }, [efforts_Hrs]);
 
     useEffect(() => {
-        if (sDE !== undefined) {
-            const pending = 100 - sDE;
+        if (sde !== undefined) {
+            const pending = 100 - sde;
             setEfforts_Pending(pending);
         }
-    }, [sDE]);
+    }, [sde]);
 
     const handleUpdate = async (e) => {
         e.preventDefault();
 
         const userId = parseInt(id);
 
-        if (!customer_Name || !emp_Name || !role_Maturity || !skill_Profile || !bill_Rate || !DB_Estimate || !g_Level ||
-            !instance_Count || !monthly_Efforts || !fTE_Count || !rate_Card || !efforts || !efforts_Hrs || !rate_Ero || !sDE || !efforts_Pending) {
+        if (!customer_Name || !emp_Name || !role_Maturity || !skill_Profile || !bill_Rate || !db_Estimate || !g_Level ||
+            !instance_Count || !monthly_Efforts || !fte_count || !rate_Card || !efforts || !efforts_Hrs || !rate_Ero || !sde || !efforts_Pending) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Error!',
@@ -92,16 +92,16 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
             role_Maturity,
             skill_Profile,
             bill_Rate,
-            DB_Estimate,
+            db_Estimate,
             g_Level,
             instance_Count,
             monthly_Efforts,
-            fTE_Count,
+            fte_count,
             rate_Card,
             efforts,
             efforts_Hrs,
             rate_Ero,
-            sDE,
+            sde,
             efforts_Pending
         };
 
@@ -181,6 +181,14 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
                     name="emp_Name"
                     value={emp_Name}
                     onChange={e => setEmp_Name(e.target.value)}
+                    onContextMenu={(e) => {
+                        e.preventDefault();
+                        setFTE_Count(employeesData.length + 1); // Set the desired value for fte_count
+                    }}
+                    onBlur={() => {
+                        // Set the desired value for fte_count onBlur if needed
+                        setFTE_Count(employeesData.length + 1);
+                    }}
                 />
                 <label htmlFor="role_Maturity">Role_Maturity</label>
                 <select
@@ -217,12 +225,12 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
                     value={bill_Rate}
                     onChange={e => setBill_Rate(e.target.value)}
                 />
-                <label htmlFor="DB_Estimate">DB_Estimate</label>
+                <label htmlFor="db_Estimate">DB_Estimate</label>
                 <input
-                    id="DB_Estimate"
+                    id="db_Estimate"
                     type="number"
-                    name="DB_Estimate"
-                    value={DB_Estimate}
+                    name="db_Estimate"
+                    value={db_Estimate}
                     onChange={e => setDB_Estimate(e.target.value)}
                     min ="0"
                     step="0.01"
@@ -254,12 +262,12 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
                     onChange={e => setMonthly_Efforts(e.target.value)}
                 />
 
-                <label htmlFor="fTE_Count">FTE_Count</label>
+                <label htmlFor="fte_count">FTE_Count</label>
                 <input
-                    id="fTE_Count"
+                    id="fte_count"
                     type="number"
-                    name="fTE_Count"
-                    value={fTE_Count}
+                    name="fte_count"
+                    value={fte_count}
                     onChange={e => setFTE_Count(e.target.value)}
                 />
 
@@ -313,11 +321,11 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
                     className='input'
                 />
 
-                <label className='sDE'>Efforts Consumed [%]</label>
+                <label className='sde'>Efforts Consumed [%]</label>
                 <input
                     type="number"
 
-                    value={sDE ? sDE.toFixed(2) : ''}
+                    value={sde ? sde.toFixed(2) : ''}
                     onChange={(e) => setSDE(parseFloat(e.target.value).toFixed(2))}
                     className='input'
                 />

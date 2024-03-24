@@ -13,19 +13,19 @@ function Add({ employees, setEmployees, setIsAdding }) {
     const [role_Maturity, setRole_Maturity] = useState('');
     const [skill_Profile, setSkill_Profile] = useState('');
     const [bill_Rate, setBill_Rate] = useState('');
-    const [DB_Estimate, setDB_Estimate] = useState('');
+    const [db_Estimate, setDB_Estimate] = useState('');
     const [g_Level, setG_Level] = useState('');
 
     const [instance_Count, setInstance_Count] = useState('');
     const [monthly_Efforts, setMonthly_Efforts] = useState('');
-    const [fTE_Count, setFTE_Count] = useState();
+    const [fte_count, setFTE_Count] = useState();
     const [rate_Card, setRate_Card] = useState('');
 
 
     const [efforts_Hrs, setEfforts_Hrs] = useState('');
     const [efforts, setEfforts] = useState();
     const [rate_Ero, setRate_Ero] = useState('');
-    const [sDE, setSDE] = useState('');
+    const [sde, setSDE] = useState('');
     const [efforts_Pending, setEfforts_Pending] = useState(0);
 
     const textInput = useRef(null);
@@ -45,10 +45,10 @@ function Add({ employees, setEmployees, setIsAdding }) {
     }, [instance_Count]);
 
     useEffect(() => {
-        if (monthly_Efforts && fTE_Count) {
-            setEfforts_Hrs((monthly_Efforts / fTE_Count) / 160 * 100);
+        if (monthly_Efforts && fte_count) {
+            setEfforts_Hrs((monthly_Efforts / fte_count) / 160 * 100);
         }
-    }, [monthly_Efforts, fTE_Count]);
+    }, [monthly_Efforts, fte_count]);
 
     useEffect(() => {
         setEfforts(160 * efforts_Hrs / 100);
@@ -67,11 +67,11 @@ function Add({ employees, setEmployees, setIsAdding }) {
     }, [efforts_Hrs]);
 
     useEffect(() => {
-        if (sDE !== undefined) {
-            const pending = 100 - sDE;
+        if (sde !== undefined) {
+            const pending = 100 - sde;
             setEfforts_Pending(pending);
         }
-    }, [sDE]);
+    }, [sde]);
 
 
 
@@ -83,16 +83,16 @@ function Add({ employees, setEmployees, setIsAdding }) {
             role_Maturity,
             skill_Profile,
             bill_Rate: parseInt(bill_Rate),
-            DB_Estimate: parseFloat(DB_Estimate),
+            db_Estimate: parseFloat(db_Estimate),
             g_Level,
             instance_Count: parseInt(instance_Count),
             monthly_Efforts: parseInt(monthly_Efforts),
-            fTE_Count: fTE_Count || 0,
+            fte_count,
             rate_Card: parseInt(rate_Card),
             efforts: parseFloat(efforts),
             efforts_Hrs: parseFloat(efforts_Hrs),
             rate_Ero: parseFloat(rate_Ero),
-            sDE: parseFloat(sDE),
+            sde: parseFloat(sde),
             efforts_Pending: parseFloat(efforts_Pending)
         };
         console.log("Employee Name:", userData);
@@ -191,12 +191,12 @@ function Add({ employees, setEmployees, setIsAdding }) {
                     value={bill_Rate}
                     onChange={e => setBill_Rate(e.target.value)}
                 />
-                <label htmlFor="DB_Estimate">DB_Estimate</label>
+                <label htmlFor="db_Estimate">DB_Estimate</label>
                 <input
-                    id="DB_Estimate"
+                    id="db_Estimate"
                     type="number"
-                    name="DB_Estimate"
-                    value={DB_Estimate}
+                    name="db_Estimate"
+                    value={db_Estimate}
                     onChange={e => setDB_Estimate(e.target.value)}
                     min ="0"
                     step="0.01"
@@ -228,12 +228,12 @@ function Add({ employees, setEmployees, setIsAdding }) {
                     onChange={e => setMonthly_Efforts(e.target.value)}
                 />
 
-                <label htmlFor="fTE_Count">FTE_Count</label>
+                <label htmlFor="fte_count">FTE_Count</label>
                 <input
-                    id="fTE_Count"
+                    id="fte_count"
                     type="number"
-                    name="fTE_Count"
-                    value={fTE_Count}
+                    name="fte_count"
+                    value={fte_count}
                     onChange={e => setFTE_Count(e.target.value)}
                 />
 
@@ -288,11 +288,11 @@ function Add({ employees, setEmployees, setIsAdding }) {
                     className='input'
                 />
 
-                <label className='sDE'>Efforts Consumed [%]</label>
+                <label className='sde'>Efforts Consumed [%]</label>
                 <input
                     type="number"
 
-                    value={sDE}
+                    value={sde}
                     onChange={(e) => setSDE(parseFloat(e.target.value).toFixed(2))}
                     className='input'
                 />
