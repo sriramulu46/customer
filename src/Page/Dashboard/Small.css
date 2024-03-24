@@ -1,0 +1,7 @@
+.small-container {
+    max-width: 400px; /* Adjust the maximum width according to your preference */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Add some padding around the container */
+    border: 1px solid #ccc; /* Add a border for visual separation */
+    border-radius: 8px; /* Add some border radius for rounded corners */
+}
