@@ -18,7 +18,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
 
     const [instance_Count, setInstance_Count] = useState('');
     const [monthly_Efforts, setMonthly_Efforts] = useState('');
-    const [fte_count, setFTE_Count] = useState();
+    const [fte_count, setFTE_Count] = useState(employees.length + 1);
     const [rate_Card, setRate_Card] = useState('');
 
 
@@ -32,7 +32,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
 
     useEffect(() => {
         textInput.current.focus();
-        setFTE_Count(employees.length + 1);
+        // setFTE_Count(employees.length + 1);
     }, []);
 
     useEffect(() => {
