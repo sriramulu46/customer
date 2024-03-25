@@ -69,6 +69,7 @@ public class EmployeeController {
 	@GetMapping("/employees/{id}")
 	Employee getEmployeeById(@PathVariable Long id) {
 		System.out.println("get mapping id");
+		System.out.println("get mapping id");
 		return employeeRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Employee not found with id " + id));
 	}
