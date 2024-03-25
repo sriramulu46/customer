@@ -12,7 +12,7 @@ import Dashboardw from "./Page/Dashboard";
 function App() {
   return (
     <div>
-      <div>
+      <div >
         {/* <List /> */}
         <Dashboardw />
         {/* <EResources /> */}

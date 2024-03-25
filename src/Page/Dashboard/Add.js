@@ -99,7 +99,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
         };
         console.log("Employee Name:", userData);
 
-        debugger;
+        // debugger;
 
         try {
             await axios.post("http://localhost:8080/newemployee", userData);

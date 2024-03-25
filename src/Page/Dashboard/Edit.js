@@ -28,10 +28,10 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
 
     const textInput = useRef(null);
 
-    useEffect(() => {
-        textInput.current.focus();
-        setFtecount(employees.length + 1);
-    }, []);
+    // useEffect(() => {
+    //     textInput.current.focus();
+    //     // setFtecount(employees.length + 1);
+    // }, []);
 
     useEffect(() => {
         if (instance_Count !== '') {
@@ -105,6 +105,8 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
             sde,
             efforts_Pending
         };
+
+        // debugger;
 
         try {
             await axios.put(`http://localhost:8080/employees/${id}`, userData);

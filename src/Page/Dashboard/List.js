@@ -33,8 +33,8 @@ function List({ id, employees, setEmployees, handleEdit, handleDelete }) {
 
     return (
         <div className='contain-table'>
-            {/* Apply striped-table-small class for smaller table */}
-            <table className='striped-table striped-table-small'>
+            
+            <table className='striped-table striped-table-small '>
                 <thead>
                     <tr>
                         <th>No.</th>

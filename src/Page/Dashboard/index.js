@@ -22,6 +22,7 @@ function Dashboardw() {
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [isAdding, setIsAdding] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
+    const [ftecount, setFtecount] = useState(0);
 
     // useEffect(() => {
     //     loadUser();
@@ -30,7 +31,7 @@ function Dashboardw() {
     
 
     useEffect(() => {
-        debugger;
+        // debugger;
         const fetchData = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/employees');
@@ -43,6 +44,7 @@ function Dashboardw() {
         fetchData();
     }, []);
     
+// debugger;
     const handleEdit = (id) => {
         const [employee] = employees.filter(employee => employee.id === id);
 
@@ -50,12 +52,24 @@ function Dashboardw() {
         setIsEditing(true);
     }
 
-
+debugger;
 
     const handleDelete = async (id) => {
         try {
+            const response = await axios.get(`http://localhost:8080/employees/${id}`);
+            const deletedEmployee = response.data;
+            const deletedFtecount = deletedEmployee.ftecount;
+            const newFtecount = employees.reduce((acc, employee) => {
+                if (employee.id !== id) {
+                    return acc + employee.ftecount;
+                }
+                return acc;
+            }, 0);
+
             await axios.delete(`http://localhost:8080/employee/${id}`);
             setEmployees(employees.filter(emp => emp.id !== id));
+            setFtecount(newFtecount);
+
             Swal.fire({
                 icon: 'success',
                 title: 'Deleted!',
