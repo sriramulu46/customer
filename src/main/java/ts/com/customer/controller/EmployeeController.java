@@ -28,7 +28,8 @@ public class EmployeeController {
 	@GetMapping("/employees")
 	List<Employee> getAllUser() {
 		System.out.println("Get Method ");
-		return employeeRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+//		return employeeRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
+		return employeeRepository.findAll();
 	}
 
 	//
@@ -36,7 +37,9 @@ public class EmployeeController {
 	@PostMapping("/newemployee")
 	Employee newemployee(@RequestBody Employee newemployee) {
 		System.out.println("New Employeee add");
+		System.out.println(newemployee.toString());
 		return employeeRepository.save(newemployee);
+//		return null;
 	}
 
 	@PutMapping("/employees/{id}") // Updated path to match frontend request URL
@@ -51,7 +54,7 @@ public class EmployeeController {
 			employee.setG_Level(updatedEmployee.getG_Level());
 			employee.setInstance_Count(updatedEmployee.getInstance_Count());
 			employee.setMonthly_Efforts(updatedEmployee.getMonthly_Efforts());
-			employee.setFTE_Count(updatedEmployee.getFTE_Count());
+			employee.setFtecount(updatedEmployee.getFtecount());
 			employee.setRate_Card(updatedEmployee.getRate_Card());
 			employee.setEfforts(updatedEmployee.getEfforts());
 			employee.setEfforts_Hrs(updatedEmployee.getEfforts_Hrs());
