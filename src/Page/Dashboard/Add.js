@@ -18,7 +18,8 @@ function Add({ employees, setEmployees, setIsAdding }) {
 
     const [instance_Count, setInstance_Count] = useState('');
     const [monthly_Efforts, setMonthly_Efforts] = useState('');
-    const [fte_count, setFTE_Count] = useState(employees.length + 1);
+    // const [fte_count, setFTE_Count] = useState(employees.length + 1);
+    const [ftecount, setFtecount] = useState(employees.length + 1);
     const [rate_Card, setRate_Card] = useState('');
 
 
@@ -32,7 +33,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
 
     useEffect(() => {
         textInput.current.focus();
-        setFTE_Count(employeesData.length + 1);
+        setFtecount(employees.length + 1);
     }, []);
 
     useEffect(() => {
@@ -45,10 +46,10 @@ function Add({ employees, setEmployees, setIsAdding }) {
     }, [instance_Count]);
 
     useEffect(() => {
-        if (monthly_Efforts && fte_count) {
-            setEfforts_Hrs((monthly_Efforts / fte_count) / 160 * 100);
+        if (monthly_Efforts && ftecount) {
+            setEfforts_Hrs((monthly_Efforts / ftecount) / 160 * 100);
         }
-    }, [monthly_Efforts, fte_count]);
+    }, [monthly_Efforts, ftecount]);
 
     useEffect(() => {
         setEfforts(160 * efforts_Hrs / 100);
@@ -87,7 +88,8 @@ function Add({ employees, setEmployees, setIsAdding }) {
             g_Level,
             instance_Count: parseInt(instance_Count),
             monthly_Efforts: parseInt(monthly_Efforts),
-            fte_count,
+            // ftecount:12,
+            ftecount,
             rate_Card: parseInt(rate_Card),
             efforts: parseFloat(efforts),
             efforts_Hrs: parseFloat(efforts_Hrs),
@@ -96,6 +98,8 @@ function Add({ employees, setEmployees, setIsAdding }) {
             efforts_Pending: parseFloat(efforts_Pending)
         };
         console.log("Employee Name:", userData);
+
+        debugger;
 
         try {
             await axios.post("http://localhost:8080/newemployee", userData);
@@ -152,7 +156,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
                     value={emp_Name}
                     onChange={e => setEmp_Name(e.target.value)}
                     onBlur={() =>{
-                        setFTE_Count(employees.length + 1);
+                        setFtecount(employees.length + 1);
                     }}
                     
                 />
@@ -228,13 +232,13 @@ function Add({ employees, setEmployees, setIsAdding }) {
                     onChange={e => setMonthly_Efforts(e.target.value)}
                 />
 
-                <label htmlFor="fte_count">FTE_Count</label>
+                <label htmlFor="ftecount">FTECount</label>
                 <input
-                    id="fte_count"
+                    id="ftecount"
                     type="number"
-                    name="fte_count"
-                    value={fte_count}
-                    onChange={e => setFTE_Count(e.target.value)}
+                    name="ftecount"
+                    value={ftecount}
+                    onChange={e => setFtecount(e.target.value)}
                 />
 
 

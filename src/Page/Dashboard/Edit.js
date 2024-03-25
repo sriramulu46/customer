@@ -16,7 +16,8 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
 
     const [instance_Count, setInstance_Count] = useState(selectedEmployee.instance_Count);
     const [monthly_Efforts, setMonthly_Efforts] = useState(selectedEmployee.monthly_Efforts);
-    const [fte_count, setFTE_Count] = useState(selectedEmployee.fte_count);
+    // const [fte_count, setFTE_Count] = useState(selectedEmployee.fte_count);
+    const [ftecount, setFtecount] = useState(selectedEmployee.ftecount);
     const [rate_Card, setRate_Card] = useState(selectedEmployee.rate_Card);
 
     const [efforts_Hrs, setEfforts_Hrs] = useState(selectedEmployee.efforts_Hrs);
@@ -29,7 +30,7 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
 
     useEffect(() => {
         textInput.current.focus();
-        setFTE_Count(employeesData.length + 1);
+        setFtecount(employees.length + 1);
     }, []);
 
     useEffect(() => {
@@ -42,10 +43,10 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
     }, [instance_Count]);
 
     useEffect(() => {
-        if (monthly_Efforts && fte_count) {
-            setEfforts_Hrs((monthly_Efforts / fte_count) / 160 * 100);
+        if (monthly_Efforts && ftecount) {
+            setEfforts_Hrs((monthly_Efforts / ftecount) / 160 * 100);
         }
-    }, [monthly_Efforts, fte_count]);
+    }, [monthly_Efforts, ftecount]);
 
     useEffect(() => {
         setEfforts(160 * efforts_Hrs / 100);
@@ -76,7 +77,7 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
         const userId = parseInt(id);
 
         if (!customer_Name || !emp_Name || !role_Maturity || !skill_Profile || !bill_Rate || !db_Estimate || !g_Level ||
-            !instance_Count || !monthly_Efforts || !fte_count || !rate_Card || !efforts || !efforts_Hrs || !rate_Ero || !sde || !efforts_Pending) {
+            !instance_Count || !monthly_Efforts || !ftecount || !rate_Card || !efforts || !efforts_Hrs || !rate_Ero || !sde || !efforts_Pending) {
             return Swal.fire({
                 icon: 'error',
                 title: 'Error!',
@@ -96,7 +97,7 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
             g_Level,
             instance_Count,
             monthly_Efforts,
-            fte_count,
+            ftecount,
             rate_Card,
             efforts,
             efforts_Hrs,
@@ -183,11 +184,11 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
                     onChange={e => setEmp_Name(e.target.value)}
                     onContextMenu={(e) => {
                         e.preventDefault();
-                        setFTE_Count(employeesData.length + 1); // Set the desired value for fte_count
+                        setFtecount(employees.length + 1); // Set the desired value for fte_count
                     }}
                     onBlur={() => {
                         // Set the desired value for fte_count onBlur if needed
-                        setFTE_Count(employeesData.length + 1);
+                        setFtecount(employees.length + 1);
                     }}
                 />
                 <label htmlFor="role_Maturity">Role_Maturity</label>
@@ -262,13 +263,13 @@ function Edit({ employees, selectedEmployee, setEmployees, setIsEditing }) {
                     onChange={e => setMonthly_Efforts(e.target.value)}
                 />
 
-                <label htmlFor="fte_count">FTE_Count</label>
+                <label htmlFor="ftecount">FTE_Count</label>
                 <input
-                    id="fte_count"
+                    id="ftecount"
                     type="number"
-                    name="fte_count"
-                    value={fte_count}
-                    onChange={e => setFTE_Count(e.target.value)}
+                    name="ftecount"
+                    value={ftecount}
+                    onChange={e => setFtecount(e.target.value)}
                 />
 
 

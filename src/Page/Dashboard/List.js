@@ -74,7 +74,7 @@ function List({ id, employees, setEmployees, handleEdit, handleDelete }) {
                                 <td>{employee.g_Level}</td>
                                 <td>{employee.instance_Count}</td>
                                 <td>{employee.monthly_Efforts}</td>
-                                <td>{employee.fte_count}</td>
+                                <td>{employee.ftecount}</td>
                                 <td>{employee.rate_Card}</td>
                                 <td>{parseFloat(employee.efforts).toFixed(2)}</td>
                                 <td>{parseFloat(employee.efforts_Hrs).toFixed(2)}</td>
