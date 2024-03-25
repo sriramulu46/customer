@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useRef, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
-
+import { employeesData } from '../../data';
 
 function Add({ employees, setEmployees, setIsAdding }) {
 
@@ -32,7 +32,7 @@ function Add({ employees, setEmployees, setIsAdding }) {
 
     useEffect(() => {
         textInput.current.focus();
-        // setFTE_Count(employees.length + 1);
+        setFTE_Count(employeesData.length + 1);
     }, []);
 
     useEffect(() => {
