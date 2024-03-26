@@ -51,15 +51,19 @@ function Add({ employees, setEmployees, setIsAdding }) {
         }
     }, [monthly_Efforts, ftecount]);
 
+    //=======================Individual Monthly Efforts
     useEffect(() => {
         setEfforts(160 * efforts_Hrs / 100);
     }, [efforts_Hrs]);
 
+    
     useEffect(() => {
         if (bill_Rate && efforts_Hrs) {
             setRate_Ero((bill_Rate * efforts_Hrs / 100) / 91);
         }
     }, [bill_Rate, efforts_Hrs]);
+
+
 
     useEffect(() => {
         if (efforts_Hrs) {
@@ -67,6 +71,8 @@ function Add({ employees, setEmployees, setIsAdding }) {
         }
     }, [efforts_Hrs]);
 
+
+    
     useEffect(() => {
         if (sde !== undefined) {
             const pending = 100 - sde;

@@ -10,6 +10,8 @@ import Add from './Add';
 import Edit from './Edit';
 
 
+
+
 // import { employeesData } from '../../data';
 
 
@@ -52,7 +54,7 @@ function Dashboardw() {
         setIsEditing(true);
     }
 
-debugger;
+// debugger;
 
     const handleDelete = async (id) => {
         try {
